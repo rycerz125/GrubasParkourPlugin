@@ -29,9 +29,6 @@ public class UnderPlayerBlockWatcher implements Listener {
             return newList;
         }
     }
-    private boolean isBlockSwimable(Block block){
-        return block.getType() == Material.LAVA || block.getType() == Material.WATER;
-    }
 
     @EventHandler
     public void onAnyPlayerMove(PlayerMoveEvent event){
@@ -62,17 +59,4 @@ public class UnderPlayerBlockWatcher implements Listener {
             observer.playerStandOnNewBlock(blockList);
         }
     }
-    private List<Block> constructBlockList(boolean swimable, Location location, int deltaX, int deltaZ){
-        List<Block> blockList = new ArrayList<>();
-        Location locationUnder;
-        if(!swimable) locationUnder = location.clone().add(0,-0.6,0);
-        else locationUnder = location;
-
-
-
-        return null;
-    }
-
-
-
 }

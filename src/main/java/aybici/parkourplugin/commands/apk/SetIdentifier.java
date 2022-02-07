@@ -15,11 +15,6 @@ public class SetIdentifier implements CommandExecutor {
         Player player = (Player) sender;
         Parkour parkour = ParkourPlugin.parkourSessionSet.getSession(player).getParkour();
 
-        if (!player.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            player.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
-
         if (args.length != 1) return false;
         int identifier = Integer.parseInt(args[0]);
 

@@ -20,15 +20,6 @@ public class DeleteTopsCommand implements CommandExecutor {
         Player player = (Player) sender;
         ParkourSession session = ParkourPlugin.parkourSessionSet.getSession(player);
 
-        if (!player.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            player.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
-        /*if(!(player.getName().equals("rycerz125") || player.getName().equals("Parkourowiecc"))) {
-            player.sendMessage("nei ma opcji");
-            return true;
-        }*/
-
 
         List<TopLine> topList = session.getParkour().getTopListObject().getTopList();
         TopList topListObject = session.getParkour().getTopListObject();

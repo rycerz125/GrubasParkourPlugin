@@ -15,11 +15,6 @@ public class PlayCommand implements CommandExecutor {
         Player player = (Player) sender;
         ParkourSession session = ParkourPlugin.parkourSessionSet.getSession(player);
 
-        if (!player.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            player.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
-
         if(session.isPlayerOnParkour()){
             ParkourPlugin.parkourSessionSet.teleportToParkour(player, session.getParkour().getName());
             player.setGameMode(GameMode.ADVENTURE);

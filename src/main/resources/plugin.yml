@@ -7,6 +7,7 @@ commands:
   pklist:
   times:
   apk:
+    permission: parkourplugin.apk
   playdemo:
     description: play demo of player in this parkour
     usage: /playdemo <player>
