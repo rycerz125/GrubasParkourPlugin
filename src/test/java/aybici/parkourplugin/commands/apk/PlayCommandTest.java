@@ -1,4 +1,4 @@
-package commands.apk;
+package aybici.parkourplugin.commands.apk;
 
 import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;

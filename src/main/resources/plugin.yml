@@ -17,9 +17,6 @@ commands:
   cp:
     description: Sets checkpoint
     usage: /cp
-  setlobby:
-    description: Sets lobby location to player location
-    usage: /setlobby
   pkquit:
     description: Quits parkour
     usage: /pkquit

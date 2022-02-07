@@ -1,22 +1,33 @@
 package aybici.parkourplugin.commands;
 
 import aybici.parkourplugin.ParkourPlugin;
+import dev.alangomes.springspigot.context.Context;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import picocli.CommandLine;
 
-public class SetLobbyCommand implements CommandExecutor {
+import java.util.concurrent.Callable;
+
+@Component
+@CommandLine.Command(name="setlobby")
+public class SetLobbyCommand implements Runnable  {
+
+    @Autowired
+    private Context context;
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        Player player = (Player) sender;
+    public void run() {
+        Player player = context.getPlayer();
         if (!player.hasPermission(ParkourPlugin.permissionSet.setLobbyPermission)){
             player.sendMessage(ChatColor.RED + "Nie masz permisji, żeby ustawić lobby!");
-            return true;
+            return;
         }
         ParkourPlugin.lobby.setLobbyLocation(player.getLocation());
         player.sendMessage("Ustawiono lokalizację lobby na: " + ParkourPlugin.lobby.getLobbyLocation().toString());
-        return true;
     }
 }

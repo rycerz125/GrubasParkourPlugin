@@ -1,3 +1,5 @@
+package aybici.parkourplugin;
+
 import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
@@ -8,6 +10,7 @@ import org.bukkit.World;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Random;
 
@@ -79,6 +82,8 @@ public class ParkourPluginTest {
         //TODO: Find out why this line doesn't work on MockBukkit
         //player.assertTeleported(parkourSpawn, 1);
     }
+
+
 
     private void stepOnGreenWool(){
         player.simulatePlayerMove(parkourStartBlockLocation);
