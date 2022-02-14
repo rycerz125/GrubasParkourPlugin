@@ -12,10 +12,6 @@ public class AddCheckpointCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player player = (Player) sender;
-        if (!player.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            player.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
         ParkourSession session = ParkourPlugin.parkourSessionSet.getSession(player);
         session.staticCheckpoint.add(player.getLocation().getBlock().getLocation());
         return true;

@@ -1,4 +1,4 @@
-package commands.apk;
+package aybici.parkourplugin.commands.apk;
 
 import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
@@ -22,6 +22,7 @@ public class AddCommandTest {
         ServerMock server = MockBukkit.mock();
         ParkourPlugin plugin = MockBukkit.load(ParkourPlugin.class);
         player = server.addPlayer();
+        player.setOp(true);
         World world = player.getLocation().getWorld();
     }
 

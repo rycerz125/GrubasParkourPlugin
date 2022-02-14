@@ -22,8 +22,6 @@ public class CommandExecutorSetter {
         plugin.getCommand("ping").setExecutor(new PingCommand());
         plugin.getCommand("lobby").setExecutor(new LobbyCommand());
         plugin.getCommand("pkquit").setExecutor(new PkQuitCommand());
-        plugin.getCommand("setlobby").setExecutor(new SetLobbyCommand());
-        plugin.getCommand("cp").setExecutor(new CheckpointCommand());
         plugin.getCommand("showlasttry").setExecutor(new ShowLastTryCommand());
         plugin.getCommand("playdemo").setExecutor(new PlayDemoCommand());
 

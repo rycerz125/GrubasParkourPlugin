@@ -10,14 +10,19 @@ import aybici.parkourplugin.parkours.ParkourSet;
 import aybici.parkourplugin.parkours.TopLine;
 import aybici.parkourplugin.parkours.TopListDisplay;
 import aybici.parkourplugin.sessions.ParkourSessionSet;
+import dev.alangomes.springspigot.SpringSpigotBootstrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ParkourPlugin extends JavaPlugin {
     public static final ParkourSet parkourSet = new ParkourSet();
@@ -33,8 +38,21 @@ public class ParkourPlugin extends JavaPlugin {
     public static PermissionSet permissionSet = new PermissionSet();
     public static Lobby lobby = new Lobby();
 
+    private ConfigurableApplicationContext context;
+
+    @Autowired
+    Markour markour;
+
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        try {
+            context = SpringSpigotBootstrapper.initialize(this, Application.class);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         plugin = this;
         uuidList.loadList();
         uuidList.loadPlayerNames();
@@ -48,6 +66,13 @@ public class ParkourPlugin extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new InteractListener(), this);
         //saveBinEinTimes();
+        markour.setParkour();
+    }
+
+    @Override
+    public void onDisable() {
+        context.close();
+        context = null;
     }
 
 

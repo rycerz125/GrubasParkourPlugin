@@ -7,6 +7,7 @@ commands:
   pklist:
   times:
   apk:
+    permission: parkourplugin.apk
   playdemo:
     description: play demo of player in this parkour
     usage: /playdemo <player>
@@ -16,9 +17,6 @@ commands:
   cp:
     description: Sets checkpoint
     usage: /cp
-  setlobby:
-    description: Sets lobby location to player location
-    usage: /setlobby
   pkquit:
     description: Quits parkour
     usage: /pkquit

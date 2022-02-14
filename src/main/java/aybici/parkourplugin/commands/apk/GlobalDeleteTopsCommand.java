@@ -11,11 +11,7 @@ import org.bukkit.command.CommandSender;
 public class GlobalDeleteTopsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args){
-        if (!sender.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            sender.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
-        if (true){
+        if (true){ // TODO: Really nigga?
             sender.sendMessage("nie ma opcji");
             return false;
         }

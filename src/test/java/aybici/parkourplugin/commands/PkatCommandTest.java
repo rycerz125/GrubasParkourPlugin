@@ -1,4 +1,4 @@
-package commands;
+package aybici.parkourplugin.commands;
 
 import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;
@@ -12,10 +12,13 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class PkatCommandTest {
     private ServerMock server;
     private World world;
     private PlayerMock player;
+
+
 
     @Before
     public void setUp() {
@@ -24,6 +27,8 @@ public class PkatCommandTest {
         player = server.addPlayer();
         world = player.getLocation().getWorld();
     }
+
+
 
     @After
     public void tearDown() {

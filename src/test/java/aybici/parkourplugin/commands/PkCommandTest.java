@@ -1,4 +1,4 @@
-package commands;
+package aybici.parkourplugin.commands;
 
 import aybici.parkourplugin.ParkourPlugin;
 import be.seeseemelk.mockbukkit.MockBukkit;

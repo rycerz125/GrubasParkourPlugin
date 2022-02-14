@@ -11,7 +11,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.event.server.ServerCommandEvent;
 
 public class PlayerAndEnvironmentListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)

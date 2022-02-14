@@ -12,11 +12,6 @@ public class AddCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player player = (Player) sender;
 
-        if (!player.hasPermission(ParkourPlugin.permissionSet.apkPermission)) {
-            player.sendMessage(ChatColor.RED + "Nie masz dostępu do komend admin-parkour!");
-            return true;
-        }
-
         try {
             ParkourPlugin.parkourSet.addParkour(args[0], player.getLocation());
             player.sendMessage("Parkour with name \""+args[0]+"\" added!");
