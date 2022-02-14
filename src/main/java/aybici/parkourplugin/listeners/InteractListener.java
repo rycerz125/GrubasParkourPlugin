@@ -2,6 +2,7 @@ package aybici.parkourplugin.listeners;
 
 import aybici.parkourplugin.ParkourPlugin;
 import aybici.parkourplugin.itembuilder.ItemBuilder;
+import aybici.parkourplugin.parkours.Parkour;
 import aybici.parkourplugin.parkours.ParkourCategory;
 import aybici.parkourplugin.parkours.ParkourSet;
 import org.bukkit.Bukkit;
@@ -26,6 +27,7 @@ public class InteractListener implements Listener {
     public void onInteract(final PlayerInteractEvent event){
         final Player player = event.getPlayer();
         this.onBookClick(event, player);
+        this.onBlazeRodClick(event, player);
     }
     @EventHandler
     public void onInventoryClickItem(InventoryClickEvent event) {
@@ -43,6 +45,31 @@ public class InteractListener implements Listener {
                 player.openInventory(getMenuInventory());
             }
         }
+    }
+    private void onBlazeRodClick(final Event event,final Player player){
+        PlayerInteractEvent playerInteractEvent = (PlayerInteractEvent) event;
+        if (player.getItemInHand().getType() != Material.BLAZE_ROD) {
+            return;
+        }
+
+        if (player.hasCooldown(Material.BLAZE_ROD)){
+            return;
+        }
+        player.setCooldown(Material.BLAZE_ROD, 10);
+        Parkour parkour = ParkourPlugin.parkourSessionSet.getSession(player).getParkour();
+        Parkour parkour2 = null;
+        if (parkour == null) {
+            player.sendMessage("Musisz dołączyć do parkour!");
+            return;
+        }
+        if(playerInteractEvent.getAction() == Action.LEFT_CLICK_AIR || playerInteractEvent.getAction() == Action.LEFT_CLICK_BLOCK){
+            parkour2 = ParkourPlugin.parkourSet.getPreviousParkour(parkour);
+        }
+        if(playerInteractEvent.getAction() == Action.RIGHT_CLICK_AIR || playerInteractEvent.getAction() == Action.RIGHT_CLICK_BLOCK){
+            parkour2 = ParkourPlugin.parkourSet.getNextParkour(parkour);
+        }
+        String command = "pk " + parkour2.getName();
+        player.performCommand(command);
     }
     private Inventory getMenuInventory(){
         Inventory inventory = Bukkit.getServer().createInventory(null, 18);
@@ -76,17 +103,7 @@ public class InteractListener implements Listener {
             return Material.DIORITE;
         return null;
     }
-//    private Inventory getCategoryInventory(ParkourCategory category){ //(ParkourCategory category, int page)
-//        int SIZE = 54;
-//        Inventory inventory = Bukkit.getServer().createInventory(null, SIZE);
-//        int shift = 1;
-//        for (int i = SIZE - 1; i >=0 ;i --){
-//
-//            final ItemStack item = new ItemBuilder(Material.GREEN_WOOL, 1).setName("§bNazwa mapy").addLoreLine("pk "+category.name()+" "+(i+shift)).toItemStack();
-//            inventory.setItem(i, item);
-//        }
-//        return inventory;
-//    }
+
     private Inventory getCategoryInventory(ParkourCategory category, int page){ //(ParkourCategory category, int page)
         int SIZE = 54;
         Inventory inventory = Bukkit.getServer().createInventory(null, SIZE);
@@ -96,7 +113,7 @@ public class InteractListener implements Listener {
         int parkourID;
         boolean nextPageExists = true;
         for (int i = 0; i <= SIZE-2 ;i ++){
-            parkourID = i + shift + (page-1)*SIZE;
+            parkourID = i + shift + (page-1)*(SIZE-1);
             if (parkourID > maxIDOfCategory) {
                 nextPageExists = false;
                 break;
@@ -134,6 +151,8 @@ public class InteractListener implements Listener {
                 return;
             }
         }
+
+
 
         if (material == Material.ARROW){
             String loreLine = event.getCurrentItem().getItemMeta().getLore().get(0);

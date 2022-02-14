@@ -16,8 +16,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,14 +70,6 @@ public class ParkourPlugin extends JavaPlugin {
             for (Parkour parkour : parkourSet.getParkours()) {
                 List<TopLine> topki = topListDisplay.getAllTimesOfPlayer(Bukkit.getOfflinePlayer(gracz), parkour.getTopListObject().getTopList());
                 if (topki.size() != 0) {
-                    File file = new File(parkour.folderName+ parkour.dataFileNameInsideFolder);
-                    File file1  = new File("dataBase1" + File.separator + "parkours" + File.separator + "parkourMap_" +
-                            parkour.getName() + File.separator + "parkourData.txt");
-                    try {
-                        Files.copy(file.toPath(),file1.toPath());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     liczba += topki.size();
                     Bukkit.getLogger().info("Znaleziono " + topki.size() + "topek na " + parkour.getName() + " gracza " + gracz  +" - "+ liczba);
                     for (TopLine topLine : topki) {

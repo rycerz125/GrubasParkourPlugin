@@ -138,10 +138,85 @@ public class ParkourSet {
     }
     public int getPreviousIdentifierOfCategory(ParkourCategory category, int id){
         int previousID = id - 1;
-        while (!categoryContainsIdentifier(category, previousID)){
+        int lowestId = getLowestIdentifierOfCategory(category);
+        while ((!categoryContainsIdentifier(category, previousID)) && previousID > lowestId){
             previousID--;
         }
-        return previousID;
+        return Math.max(previousID, lowestId);
+    }
+    public int getNextIdentifierOfCategory(ParkourCategory category, int id){
+        int nextId = id + 1;
+        int maxId = getMaxIdentifierOfCategory(category);
+        while ((!categoryContainsIdentifier(category, nextId)) && nextId < maxId){
+            nextId++;
+        }
+        return Math.min(nextId, maxId);
+    }
+    public Parkour getNextParkour(Parkour parkour){
+        ParkourCategory category = parkour.getCategory();
+        int nextID = getNextIdentifierOfCategory(category,parkour.getIdentifier());
+        if (parkour.getIdentifier() == getMaxIdentifierOfCategory(category)){
+            ParkourCategory nextCategory = getNextCategory(category);
+            if(!nextCategory.equals(category)) {
+                category = nextCategory;
+                nextID = getLowestIdentifierOfCategory(nextCategory);
+            }
+        }
+        return getParkourByCategoryAndID(category,nextID);
+    }
+    public Parkour getPreviousParkour(Parkour parkour){
+        ParkourCategory category = parkour.getCategory();
+        int previousID = getPreviousIdentifierOfCategory(category,parkour.getIdentifier());
+        if (parkour.getIdentifier() == getLowestIdentifierOfCategory(category)){
+            ParkourCategory previousCategory = getPreviousCategory(category);
+            if(!previousCategory.equals(category)) {
+                category = previousCategory;
+                previousID = getMaxIdentifierOfCategory(previousCategory);
+            }
+        }
+        return getParkourByCategoryAndID(category,previousID);
+    }
+    public ParkourCategory getPreviousCategory(ParkourCategory category){
+        if (category.equals(ParkourCategory.EASY))
+            return ParkourCategory.EASY;
+        if (category.equals(ParkourCategory.MEDIUM))
+            return ParkourCategory.EASY;
+        if (category.equals(ParkourCategory.HARD))
+            return ParkourCategory.MEDIUM;
+
+        if (category.equals(ParkourCategory.DROPPER))
+            return ParkourCategory.HARD;
+        if (category.equals(ParkourCategory.KZ))
+            return ParkourCategory.DROPPER;
+        if (category.equals(ParkourCategory.COMMUNITY))
+            return ParkourCategory.KZ;
+        if (category.equals(ParkourCategory.SPECIAL))
+            return ParkourCategory.COMMUNITY;
+        if (category.equals(ParkourCategory.EVENT))
+            return ParkourCategory.SPECIAL;
+
+        return ParkourCategory.NO_CATEGORY;
+    }
+    public ParkourCategory getNextCategory(ParkourCategory category){
+        if (category.equals(ParkourCategory.EASY))
+            return ParkourCategory.MEDIUM;
+        if (category.equals(ParkourCategory.MEDIUM))
+            return ParkourCategory.HARD;
+        if (category.equals(ParkourCategory.HARD))
+            return ParkourCategory.DROPPER;
+
+        if (category.equals(ParkourCategory.DROPPER))
+            return ParkourCategory.KZ;
+        if (category.equals(ParkourCategory.KZ))
+            return ParkourCategory.COMMUNITY;
+        if (category.equals(ParkourCategory.COMMUNITY))
+            return ParkourCategory.SPECIAL;
+        if (category.equals(ParkourCategory.SPECIAL))
+            return ParkourCategory.EVENT;
+        if (category.equals(ParkourCategory.EVENT))
+            return ParkourCategory.EVENT;
+
+        return ParkourCategory.NO_CATEGORY;
     }
     public boolean playerHasAccessToParkour(Player player, Parkour parkour, Boolean sendMessages){
         ParkourCategory category = parkour.getCategory();
