@@ -216,7 +216,7 @@ public class Parkour{
         }
     }
     public void loadParkour(String directory) {
-        Bukkit.getLogger().info(directory);
+        //Bukkit.getLogger().info(directory);
         if (!new File(directory + dataFileNameInsideFolder).exists()){
             getLogger().info("Missing file: " + directory + dataFileNameInsideFolder);
             return;
@@ -237,7 +237,7 @@ public class Parkour{
                 topList.loadTopListString(directory);
             }
         } catch(IOException a){
-            System.out.println("E KURDE COS JEST NIE TAK DXD");
+            System.out.println("Błąd wczytywania parkoura");
             System.out.println(Arrays.toString(a.getStackTrace()));
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
