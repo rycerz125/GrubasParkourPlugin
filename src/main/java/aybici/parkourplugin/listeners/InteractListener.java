@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@SuppressWarnings("deprecation")
 public class InteractListener implements Listener {
 
     @EventHandler
@@ -34,10 +35,11 @@ public class InteractListener implements Listener {
         onInventoryInteract(event);
     }
 
+
     private void onBookClick(final Event event, final Player player){
         if(((PlayerInteractEvent)event).getAction() == Action.RIGHT_CLICK_AIR){
             if(player.getItemInHand().getType() == Material.BOOK){
-                player.openInventory(getMenuInventory()); //(getMenuInventory)
+                player.openInventory(getMenuInventory());
             }
         }
         if(((PlayerInteractEvent)event).getAction() == Action.RIGHT_CLICK_BLOCK){
@@ -55,7 +57,7 @@ public class InteractListener implements Listener {
         if (player.hasCooldown(Material.BLAZE_ROD)){
             return;
         }
-        player.setCooldown(Material.BLAZE_ROD, 10);
+        player.setCooldown(Material.BLAZE_ROD, 60);
         Parkour parkour = ParkourPlugin.parkourSessionSet.getSession(player).getParkour();
         Parkour parkour2 = null;
         if (parkour == null) {
@@ -112,20 +114,26 @@ public class InteractListener implements Listener {
         int shift = 1;
         int parkourID;
         boolean nextPageExists = true;
-        for (int i = 0; i <= SIZE-2 ;i ++){
-            parkourID = i + shift + (page-1)*(SIZE-1);
+        boolean previousPageExists = true;
+        if (page == 1) previousPageExists = false;
+        for (int i = 0; i <= SIZE - 3 ;i ++){
+            parkourID = i + shift + (page - 1) * (SIZE - 2);
             if (parkourID > maxIDOfCategory) {
                 nextPageExists = false;
                 break;
             }
             if (!parkourSet.categoryContainsIdentifier(category, parkourID)) continue;
             String parkourName = parkourSet.getParkourByCategoryAndID(category,parkourID).getName();
-            final ItemStack item = new ItemBuilder(Material.SPONGE, 1).setName("§b"+ parkourName).addLoreLine("pk "+category.name()+" "+parkourID).toItemStack();
+            final ItemStack item = new ItemBuilder(Material.SPONGE, 1).setName("§b" + parkourName).addLoreLine("pk " + category.name() + " "+parkourID).toItemStack();
             inventory.setItem(i, item);
         }
         if (nextPageExists) {
             final ItemStack arrow = new ItemBuilder(Material.ARROW, 1).setName("§bKolejna strona").addLoreLine(category.name() + "#" + (page+1)).toItemStack();
-            inventory.setItem(SIZE-1,arrow);
+            inventory.setItem(SIZE - 1,arrow);
+        }
+        if (previousPageExists) {
+            final ItemStack arrow = new ItemBuilder(Material.ARROW, 1).setName("§bPoprzednia strona").addLoreLine(category.name() + "#" + (page-1)).toItemStack();
+            inventory.setItem(SIZE - 2, arrow);
         }
         return inventory;
     }

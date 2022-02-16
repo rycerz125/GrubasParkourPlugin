@@ -21,7 +21,7 @@ public class JoinListener implements Listener {
 
     public static void setItems(Player player){
         final ItemStack book = new ItemBuilder(Material.BOOK, 1).setName("§bMenu Parkourow - /pk kategoria numer").addLoreLine("developing").toItemStack();
-        final ItemStack blazeRod = new ItemBuilder(Material.BLAZE_ROD, 1).setName("§bKolejny/Następny parkour").addLoreLine("right/left click").toItemStack();
+        final ItemStack blazeRod = new ItemBuilder(Material.BLAZE_ROD, 1).setName("§bPoprzedni/Następny parkour").addLoreLine("left/right click").toItemStack();
         player.getInventory().setItem(3, book);
         player.getInventory().setItem(2, blazeRod);
         player.updateInventory();
