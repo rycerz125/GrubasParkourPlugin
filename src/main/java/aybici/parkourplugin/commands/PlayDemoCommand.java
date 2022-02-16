@@ -16,6 +16,8 @@ public class PlayDemoCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         Player player = (Player) sender;
         Parkour parkour = ParkourPlugin.parkourSessionSet.getSession(player).getParkour();
+
+        if (args.length == 0) return false;
         String bestPlayerName = args[0];
         int slowMotion = 1;
 
@@ -48,8 +50,8 @@ public class PlayDemoCommand implements CommandExecutor {
             }
 
         } else if (!new File(parkour.folderName + File.separator + "demos"+File.separator + args[0] + ".txt").exists()) {
-                player.sendMessage("Brak zapisanego przejścia tego gracza");
-                return false;
+            player.sendMessage("Brak zapisanego przejścia tego gracza");
+            return true;
         }
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),"skin set " + player.getName() +" "+ bestPlayerName);
         ParkourPlugin.positionSaver.playDemo(player,ParkourPlugin.positionSaver.getDemo(Bukkit.getOfflinePlayer(bestPlayerName),

@@ -10,7 +10,7 @@ commands:
     permission: parkourplugin.apk
   playdemo:
     description: play demo of player in this parkour
-    usage: /playdemo <player>
+    usage: /playdemo <nick/"best"> [slowmode]
   showlasttry:
     description: plays demo of last try in parkour
     usage: /showlasttry
@@ -22,17 +22,17 @@ commands:
     usage: /pkquit
   lobby:
     description: Quits parkour and teleports to lobby
-    usage: /lobby [tpall]
+    usage: /lobby ["tpall"]
   ping:
     description: Shows your ping
     usage: /ping
   hide:
     description: Hide or show all players
-    usage: /hide <on/off>
+    usage: /hide <"on"/"off">
   fails:
     description: Display number of fails on parkour
     usage: /fails
   pk:
     description: Teleport to a parkour
-    usage: /pk <pkname> (WARNING! replace " " to "_"); /pk <category> <ID>; try also /pklist;
+    usage: /pk <pkname> (replace " " to "_"); /pk <category> <ID>; try also /pklist;
   pkat:
