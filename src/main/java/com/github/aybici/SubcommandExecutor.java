@@ -26,7 +26,7 @@ public class SubcommandExecutor implements CommandExecutor {
         subcommand.setParentCommandName(commandName);
         executors.put(subcommand.getName(), subcommand);
         setDefaultExecutor((commandSender, command, s, strings) -> {
-            commandSender.sendMessage("Command list - "+commandName+" help");
+            commandSender.sendMessage(ChatColor.GOLD + "Command list - "+commandName+" help");
             return false;
         });
     }
