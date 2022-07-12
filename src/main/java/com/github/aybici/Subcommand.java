@@ -19,7 +19,7 @@ public class Subcommand {
     }
 
     public String createUsageString(){
-        return parentCommandName + " " + name + (argsString.length() > 0 ? " " : " ") + argsString;
+        return ChatColor.GREEN + parentCommandName + " " + name + ChatColor.DARK_GREEN + (argsString.length() > 0 ? " " : " ") + argsString + ChatColor.WHITE;
     }
 
     public String createHelpString(){
