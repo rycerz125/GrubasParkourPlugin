@@ -14,5 +14,4 @@ public class HelpCommand {
                     return true;
                 });
     }
-
 }

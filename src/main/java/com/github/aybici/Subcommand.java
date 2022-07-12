@@ -10,7 +10,7 @@ public class Subcommand {
     private final int[] possibleArgsCount;
     private String parentCommandName;
 
-    public Subcommand(String name,String argsString, String description, CommandExecutor executor){
+    public Subcommand(String name, String argsString, String description, CommandExecutor executor){
         this.name = name;
         this.argsString = argsString;
         this.description = description;
@@ -19,9 +19,8 @@ public class Subcommand {
     }
 
     public String createUsageString(){
-        return parentCommandName+" "+name+(argsString.length() > 0 ? " " : "")+argsString;
+        return parentCommandName + " " + name + (argsString.length() > 0 ? " " : " ") + argsString;
     }
-
 
     public String createHelpString(){
         return createUsageString() + " - " + description;
@@ -29,20 +28,21 @@ public class Subcommand {
 
     public boolean isGoodUsage(String[] usage){
         int argsCount = usage.length;
-
-        //If contains
         for(int num : possibleArgsCount){
-            if(argsCount == num) return true;
+            if(argsCount == num)
+                return true;
         }
-        //If not contains
         return false;
     }
 
-    public void setParentCommandName(String parentCommandName){ this.parentCommandName = parentCommandName; }
+    public void setParentCommandName(String parentCommandName){
+        this.parentCommandName = parentCommandName;
+    }
 
     public String getName(){
         return name;
     }
+
     public CommandExecutor getExecutor(){
         return executor;
     }

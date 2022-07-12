@@ -8,8 +8,7 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SubcommandExecutor implements CommandExecutor{
-
+public class SubcommandExecutor implements CommandExecutor {
     private final HashMap<String,Subcommand> executors = new HashMap<>();
     private final String commandName;
     private CommandExecutor defaultExecutor;
