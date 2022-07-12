@@ -6,7 +6,7 @@ public class HelpCommand {
                 "",
                 "shows all commands in plugin",
                 (commandSender, command, s, strings) -> {
-                    commandSender.sendMessage("Command list for " + executor.getCommandName() + ":");
+                    commandSender.sendMessage(ChatColor.GOLD + "Command list for " + executor.getCommandName() + ":");
 
                     for (Subcommand subcommand : executor.getSubcommands()) {
                         commandSender.sendMessage(subcommand.createHelpString());
