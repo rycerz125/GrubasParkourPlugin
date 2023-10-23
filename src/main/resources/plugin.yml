@@ -2,7 +2,7 @@ name: ParkourPlugin
 main: aybici.parkourplugin.ParkourPlugin
 softdepend: [Multiverse-Core, Essentials]
 version: 0.1
-api-version: 1.16
+api-version: 1.20
 authors:
   - rycerz125
   - wuza8

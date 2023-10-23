@@ -16,7 +16,7 @@ public class Announcmenter {
 
     private static int current = 0;
 
-    public static void run(){
+    public static void run(ParkourPlugin plugin){
         TextComponent message1 = new TextComponent(ChatColor.AQUA+ ">"+ ChatColor.GREEN + "> "+ ChatColor.WHITE + "Zakup usługę "+ ChatColor.YELLOW + "VipMan "+ ChatColor.WHITE + "na naszym sklepie już teraz! Wszystkie dodatkowe przywileje możesz sprawdzić na naszej stronie: "+ ChatColor.YELLOW + ChatColor.UNDERLINE + "http://itemshop.pl/842866.html");
         message1.setClickEvent( new ClickEvent( ClickEvent.Action.OPEN_URL, "http://itemshop.pl/842866.html" ) );
 
@@ -26,7 +26,7 @@ public class Announcmenter {
         messages.add(message1);
         messages.add(message2);
 
-        Bukkit.getScheduler().runTaskTimer(ParkourPlugin.getInstance(), ()->{
+        Bukkit.getScheduler().runTaskTimer(plugin, ()->{
             Bukkit.spigot().broadcast(messages.get(current));
             current++;
             if(current >= messages.size()) current = 0;

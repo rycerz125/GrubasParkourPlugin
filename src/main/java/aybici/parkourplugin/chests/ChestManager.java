@@ -186,6 +186,7 @@ public class ChestManager {
                 .build());
         fm.setPower(0);
         f.setFireworkMeta(fm);
+        f.detonate();
     }
 }
 

@@ -13,7 +13,7 @@ public class ParkourTopsCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender.hasPermission("parkour.holograms.setting") || sender.getName().equals("MrKaratio1337"))
+        if(!sender.hasPermission("parkour.holograms.setting"))
             return true;
         if(args.length == 1){
             if(args[0].equalsIgnoreCase("1")){
@@ -46,7 +46,7 @@ public class ParkourTopsCommand implements CommandExecutor {
     }
 
     public static String locationToString(Location location){
-        return location.getWorld().getName() + ":" + location.getX() + ";" + location.getY() + ";" + location.getZ() + ";" + location.getYaw() + ";" + location.getPitch();
+        return location.getWorld().getName() + ";" + location.getX() + ";" + location.getY() + ";" + location.getZ() + ";" + location.getYaw() + ";" + location.getPitch();
     }
 
     public static Location stringToLocation(String s){
