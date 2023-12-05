@@ -20,6 +20,9 @@ public class SpecialBlockFinder {
     private static boolean isCarpet(Material material){
         return material.name().contains("CARPET");
     }
+	private static boolean isFenceOrWall(Block block){
+		return block.getType().name().contains("WALL") || block.getType().name().contains("FENCE");
+	}
     private static boolean isBottomSlab(Block block){
         if(!block.getType().name().contains("SLAB")) return false;
         Slab slab = (Slab) block.getBlockData();
@@ -88,7 +91,7 @@ public class SpecialBlockFinder {
                 block.getType() == Material.RED_WOOL;
     }
     private static boolean checkBlockTypeDependingCollision(Location playerLocation, Block block){
-        if (isBlockTypeInteractive(block)){
+        if (isBlockTypeInteractive(block) || isFenceOrWall(block)){
             return true;
         }
         else if(isBlockTypeSemiPassable(block)){
