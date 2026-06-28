@@ -56,13 +56,19 @@ public class PlayerAndEnvironmentListener implements Listener {
             player.sendMessage(ChatColor.GOLD + "Jesteś naszym " + ParkourPlugin.uuidList.getLength() + ". graczem!");
             Bukkit.getLogger().info("Dodano nowego gracza nr " + ParkourPlugin.uuidList.getLength() + " o nicku: " + player.getName());
         }
-        else player.sendMessage(ChatColor.GOLD + "Witamy na serwerze GrubasKraft!");
+        else player.sendMessage(ChatColor.GOLD + "Witamy na serwerze GrubasKraft Dev!");
 
     }
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        player.teleport(ParkourPlugin.lobby.getLobbyLocation());
+
+        Location lobby = ParkourPlugin.lobby.getLobbyLocation();
+
+        if (lobby != null) {
+            player.teleport(lobby);
+        }
+
         ParkourPlugin.parkourSessionSet.deleteParkourSession(player);
         TabUtil.refreshAllPlayersTab();
     }
@@ -158,7 +164,6 @@ public class PlayerAndEnvironmentListener implements Listener {
     public void ongamemodechange(PlayerGameModeChangeEvent event){
         if (!event.getPlayer().hasPermission(ParkourPlugin.permissionSet.buildPermission)){
             event.setCancelled(true);
-            event.getPlayer().setGameMode(GameMode.ADVENTURE);
         }
     }
 //    @EventHandler
