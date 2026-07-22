@@ -79,7 +79,9 @@ public class SpecialBlockFinder {
         addSuspectedBlocksHorizontally(edgeCollisionsTable, playerLocation,potentiallySpecialBlocks);
         // teraz dla y -= 1
         Location downLocation = playerLocation.clone().add(0, -1, 0);
+        Location down2Location = playerLocation.clone().add(0, -2, 0);
         addSuspectedBlocksHorizontally(edgeCollisionsTable, downLocation,potentiallySpecialBlocks);
+        addSuspectedBlocksHorizontally(edgeCollisionsTable, down2Location,potentiallySpecialBlocks);
     }
     private static boolean isBlockTypeSemiPassable(Block block){      // bloki polprzewodzące
         return block.getType() == Material.LAVA ||

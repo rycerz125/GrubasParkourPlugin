@@ -108,6 +108,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.5</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>org.junit.platform</groupId>-->
         <!--            <artifactId>junit-platform-launcher</artifactId>-->
